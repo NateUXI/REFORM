@@ -6,7 +6,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import "./framer.css";
 import "./globals.css";
 
-const title = "Reform — The infinite canvas for all designers";
+const title = "Reform, The infinite canvas for all designers";
 const description =
   "Board images, brainstorm on an infinite canvas, and keep your ideas ready anywhere with Reform cloud sync.";
 
