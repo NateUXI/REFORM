@@ -1,0 +1,455 @@
+/*
+ * Your own styles. framer.css (imported first, in layout.tsx) is the stylesheet
+ * Framer generated; everything below either replaces something Framer's
+ * JavaScript runtime used to do or adds to it.
+ */
+
+/* ------------------------------------------------------------------ fonts */
+
+/*
+ * Inter, self-hosted: Latin + Latin Extended, weight axis 100–900, with
+ * Inter's stylistic features (cv03, cv04, cv09, cv11) that the design turns on.
+ * Licence: ./fonts/Inter-LICENSE.txt
+ */
+@font-face {
+  font-family: "Inter";
+  src: url("./fonts/Inter-latin-wght.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+/* Metric-matched fallback so text doesn't jump when Inter loads. */
+@font-face {
+  font-family: "Inter Placeholder";
+  src: local("Arial");
+  ascent-override: 89.79%;
+  descent-override: 22.36%;
+  line-gap-override: 0%;
+  size-adjust: 107.89%;
+}
+
+/* ------------------------------------------------------------------- page */
+
+html,
+body {
+  background: rgb(10, 10, 10);
+}
+
+[data-scroll-reveal-active="true"] [data-scroll-reveal]:not([data-scroll-revealed="true"]) {
+  opacity: 0;
+  translate: 0 24px;
+}
+
+[data-scroll-reveal] {
+  transition:
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    translate 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-scroll-reveal][data-scroll-reveal-delay="1"] {
+  transition-delay: 120ms;
+}
+
+[data-scroll-reveal][data-scroll-reveal-delay="2"] {
+  transition-delay: 240ms;
+}
+
+.legal-links {
+  display: flex;
+  flex-basis: 100%;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 18px;
+  border-top: 1px solid rgb(255 255 255 / 10%);
+}
+
+.legal-links button {
+  padding: 9px 14px;
+  border: 1px solid #292929;
+  border-radius: 999px;
+  background: #151515;
+  color: #a7a7a7;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    color 160ms ease,
+    background-color 160ms ease;
+}
+
+.legal-links button:hover,
+.legal-links button:focus-visible {
+  border-color: #35a9d2;
+  background: #1e1e1e;
+  color: #f4f4f4;
+}
+
+.legal-links button:focus-visible,
+.legal-modal-close:focus-visible {
+  outline: 2px solid #35a9d2;
+  outline-offset: 3px;
+}
+
+.legal-overlay {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.legal-overlay::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: rgb(0 0 0 / 55%);
+  backdrop-filter: blur(12px);
+  content: "";
+  animation: navigation-backdrop-in 180ms ease-out both;
+}
+
+.legal-modal {
+  display: flex;
+  width: min(760px, 100%);
+  max-height: min(85vh, 900px);
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #292929;
+  border-radius: 24px;
+  background: linear-gradient(110deg, #1e1e1e 0%, #0a0a0a 100%);
+  box-shadow: 0 24px 80px rgb(0 0 0 / 55%);
+  animation: navigation-menu-in 220ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.legal-modal-header {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  display: flex;
+  min-height: 76px;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 24px;
+  border-bottom: 1px solid #292929;
+  background: #111111f2;
+  backdrop-filter: blur(12px);
+}
+
+.legal-modal-header h2 {
+  margin: 0;
+  color: #f4f4f4;
+  font-size: clamp(20px, 4vw, 28px);
+  font-weight: 900;
+  letter-spacing: -0.6px;
+}
+
+.legal-modal-close {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex: none;
+  place-items: center;
+  border: 1px solid #333;
+  border-radius: 50%;
+  background: #1e1e1e;
+  color: #f4f4f4;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+.legal-modal-close:hover {
+  background: #292929;
+  transform: scale(1.06);
+}
+
+.legal-modal-close svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 2;
+}
+
+.legal-modal-content {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 24px;
+}
+
+.legal-document {
+  color: #c5c5c5;
+  font-size: 14px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.legal-document h3 {
+  margin: 28px 0 10px;
+  color: #f4f4f4;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  line-height: 1.35;
+}
+
+.legal-document h3:first-child {
+  margin-top: 0;
+}
+
+.legal-document p {
+  margin: 0 0 14px;
+}
+
+.legal-document ul {
+  display: grid;
+  gap: 6px;
+  margin: 0 0 16px;
+  padding-left: 22px;
+}
+
+.legal-document li::marker {
+  color: #35a9d2;
+}
+
+/* Keep in-page links from landing underneath the sticky nav. */
+#canvas,
+#desktop,
+#anywhere {
+  scroll-margin-top: 96px;
+}
+
+/* ------------------------------------------- behaviour Framer's runtime did */
+
+/* Hero phones slide in from the right on load. */
+@keyframes phone-login-in {
+  from {
+    transform: translateX(470px);
+  }
+}
+@keyframes phone-board-in {
+  from {
+    transform: translateX(754px) translateY(105px);
+  }
+}
+
+.framer-tL4DK .framer-1wcejtw {
+  animation: phone-login-in 1s cubic-bezier(0, 0.56, 0.56, 1) 0.2s backwards;
+}
+.framer-tL4DK .framer-1o52dm {
+  animation: phone-board-in 0.8s cubic-bezier(0, 0.55, 0.56, 1) backwards;
+}
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .framer-tL4DK .framer-1wcejtw {
+    animation-delay: 0s;
+    animation-timing-function: cubic-bezier(0.44, 0, 0.56, 1);
+  }
+}
+
+/* Studio photo fades in over the mountain (see MountainToStudioScene.tsx). */
+.framer-tL4DK .framer-1x2vofi {
+  transition: opacity 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+}
+.framer-tL4DK .framer-1x2vofi[data-revealed="true"] {
+  opacity: 1;
+}
+
+/* Menu entries are real links, so make them behave like Framer's text boxes. */
+.framer-6aAoN a.framer-vegk0y,
+.framer-6aAoN a.framer-1ucs1mm,
+.framer-6aAoN a.framer-1fpuqbj,
+.framer-6aAoN a.framer-1hk7gx8 {
+  text-decoration: none;
+}
+.framer-6aAoN a.framer-vegk0y,
+.framer-6aAoN a.framer-1ucs1mm,
+.framer-6aAoN a.framer-1fpuqbj {
+  display: block;
+  box-sizing: border-box;
+  padding: 8px 12px;
+  border-radius: 999px;
+  transition: background-color 160ms ease;
+}
+.framer-6aAoN a.framer-vegk0y p,
+.framer-6aAoN a.framer-1ucs1mm p,
+.framer-6aAoN a.framer-1fpuqbj p {
+  transform-origin: left center;
+  transition: transform 160ms ease;
+}
+.framer-6aAoN a.framer-vegk0y:hover,
+.framer-6aAoN a.framer-vegk0y:focus-visible,
+.framer-6aAoN a.framer-1ucs1mm:hover,
+.framer-6aAoN a.framer-1ucs1mm:focus-visible,
+.framer-6aAoN a.framer-1fpuqbj:hover,
+.framer-6aAoN a.framer-1fpuqbj:focus-visible {
+  background-color: #080808;
+}
+.framer-6aAoN a.framer-vegk0y:hover p,
+.framer-6aAoN a.framer-vegk0y:focus-visible p,
+.framer-6aAoN a.framer-1ucs1mm:hover p,
+.framer-6aAoN a.framer-1ucs1mm:focus-visible p,
+.framer-6aAoN a.framer-1fpuqbj:hover p,
+.framer-6aAoN a.framer-1fpuqbj:focus-visible p {
+  transform: scale(1.06);
+}
+.framer-6aAoN a.framer-1hk7gx8 p {
+  white-space: nowrap;
+}
+
+.framer-1lxax5 {
+  isolation: isolate;
+}
+.framer-6aAoN .framer-1bwkhlg,
+.framer-6aAoN .framer-b7inro {
+  z-index: 1;
+}
+.framer-6aAoN .framer-b7inro {
+  transition: transform 180ms ease;
+}
+.framer-6aAoN .framer-b7inro:hover,
+.framer-6aAoN .framer-b7inro:focus-visible {
+  transform: scale(1.08);
+}
+.framer-6aAoN.framer-18cu6kp {
+  z-index: 0;
+  background: transparent;
+}
+.framer-6aAoN.framer-1xvf41g {
+  z-index: 4;
+  background-color: #0000008c;
+  inset: 0;
+  height: 100vh;
+}
+.framer-6aAoN.framer-1xvf41g.is-open {
+  animation: navigation-backdrop-in 180ms ease-out both;
+}
+.framer-6aAoN.framer-1xvf41g.is-closing {
+  animation: navigation-backdrop-out 180ms ease-in both;
+}
+.framer-6aAoN.framer-1falhm9 {
+  z-index: 6;
+  background: linear-gradient(110deg, #1e1e1e 0%, #0a0a0a 100%);
+  position: fixed;
+  width: min(280px, calc(100vw - 32px));
+  transform-origin: top right;
+}
+.framer-6aAoN.framer-1falhm9.is-open {
+  animation: navigation-menu-in 220ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.framer-6aAoN.framer-1falhm9.is-closing {
+  animation: navigation-menu-out 220ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.framer-6aAoN.is-closing {
+  pointer-events: none;
+}
+@keyframes navigation-backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes navigation-backdrop-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes navigation-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes navigation-menu-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+  }
+}
+
+.framer-a8RGM.framer-s2pzxa {
+  transition: transform 180ms ease;
+}
+.framer-a8RGM.framer-s2pzxa:hover,
+.framer-a8RGM.framer-s2pzxa:focus-visible {
+  transform: scale(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-scroll-reveal-active="true"] [data-scroll-reveal]:not([data-scroll-revealed="true"]) {
+    opacity: 1;
+    translate: none;
+    transition: none;
+  }
+
+  .framer-tL4DK .framer-1wcejtw,
+  .framer-tL4DK .framer-1o52dm {
+    animation: none;
+  }
+  .framer-tL4DK .framer-1x2vofi {
+    transition: none;
+  }
+  .framer-a8RGM.framer-s2pzxa {
+    transition: none;
+  }
+  .framer-a8RGM.framer-s2pzxa:hover,
+  .framer-a8RGM.framer-s2pzxa:focus-visible {
+    transform: none;
+  }
+  .framer-6aAoN .framer-b7inro {
+    transition: none;
+  }
+  .framer-6aAoN .framer-b7inro:hover,
+  .framer-6aAoN .framer-b7inro:focus-visible {
+    transform: none;
+  }
+  .framer-6aAoN a.framer-vegk0y,
+  .framer-6aAoN a.framer-1ucs1mm,
+  .framer-6aAoN a.framer-1fpuqbj,
+  .framer-6aAoN a.framer-vegk0y p,
+  .framer-6aAoN a.framer-1ucs1mm p,
+  .framer-6aAoN a.framer-1fpuqbj p {
+    transition: none;
+  }
+  .framer-6aAoN a.framer-vegk0y:hover p,
+  .framer-6aAoN a.framer-vegk0y:focus-visible p,
+  .framer-6aAoN a.framer-1ucs1mm:hover p,
+  .framer-6aAoN a.framer-1ucs1mm:focus-visible p,
+  .framer-6aAoN a.framer-1fpuqbj:hover p,
+  .framer-6aAoN a.framer-1fpuqbj:focus-visible p {
+    transform: none;
+  }
+  .framer-6aAoN.framer-1xvf41g,
+  .framer-6aAoN.framer-1falhm9 {
+    animation: none;
+  }
+  .legal-overlay::before,
+  .legal-modal {
+    animation: none;
+  }
+  .legal-links button,
+  .legal-modal-close {
+    transition: none;
+  }
+}

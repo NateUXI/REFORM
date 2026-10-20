@@ -1,0 +1,409 @@
+.section {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 16px 32px 80px;
+}
+
+.heading {
+  width: min(100%, 1072px);
+  margin: 0 0 48px;
+  margin-inline: auto;
+  color: #f4f4f4;
+  font-family: "Inter", "Inter Placeholder", sans-serif;
+  font-size: 52px;
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 1.05;
+  text-align: left;
+}
+
+.heading span,
+.labelGradient {
+  background: linear-gradient(110deg, rgb(51, 161, 208) 0%, rgb(51, 164, 112) 100%);
+  background-clip: text;
+  color: transparent;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(48px, 7vw, 112px);
+}
+
+.card {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.artwork,
+.textCanvas {
+  transform-origin: center;
+  transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.card:hover > .artwork,
+.card:hover > .textCanvas {
+  position: relative;
+  z-index: 1;
+  transform: translateY(-8px) scale(1.05);
+}
+
+.label {
+  position: relative;
+  margin: 0 0 22px;
+  color: #f4f4f4;
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.labelText {
+  transition: opacity 220ms ease;
+}
+
+.labelGradient {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.card:hover .labelGradient {
+  opacity: 1;
+}
+
+.card:hover .labelText {
+  opacity: 0;
+}
+
+.artwork {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.model .artwork {
+  object-fit: contain;
+}
+
+.textCanvas {
+  display: flex;
+  width: 100%;
+  aspect-ratio: 1;
+  flex-direction: column;
+}
+
+.toolbar {
+  display: flex;
+  min-height: 84px;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px;
+  border: 1px solid rgb(255 255 255 / 6%);
+  border-radius: 24px;
+  background: linear-gradient(110deg, #1e1e1e 0%, #0a0a0a 100%);
+  box-shadow: 0 12px 28px rgb(0 0 0 / 28%);
+  color: #d4d4d4;
+  font-family: "Inter", "Inter Placeholder", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.toolbarActions,
+.toolbarControls {
+  display: flex;
+  align-items: center;
+}
+
+.toolbarActions {
+  min-height: 20px;
+  gap: 12px;
+  padding: 0 7px;
+}
+
+.toolbarIcon {
+  display: flex;
+  width: 16px;
+  height: 18px;
+  align-items: center;
+  justify-content: center;
+  color: #858585;
+}
+
+.toolbarIcon svg {
+  display: block;
+  width: 15px;
+  height: 15px;
+  overflow: visible;
+}
+
+.toolbarIcon:not(:last-child) svg {
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.trashIcon span {
+  width: 15px;
+  height: 15px;
+  background: currentColor;
+  mask: url("/images/trash-fill.svg") center / contain no-repeat;
+  -webkit-mask: url("/images/trash-fill.svg") center / contain no-repeat;
+}
+
+.toolbarControls {
+  gap: 8px;
+}
+
+.fontControl,
+.sizeControl,
+.textControl {
+  display: flex;
+  height: 36px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #292929;
+  border-radius: 999px;
+  background: #151515;
+  color: #f4f4f4;
+}
+
+.fontControl {
+  flex: 1;
+  min-width: 0;
+  justify-content: space-between;
+  padding: 0 13px;
+}
+
+.fontControl svg {
+  width: 13px;
+  height: 13px;
+  flex: none;
+  stroke: #999;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.sizeControl {
+  width: 64px;
+  flex: none;
+}
+
+.textControl {
+  min-width: 86px;
+  gap: 6px;
+  padding: 0 12px;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+}
+
+.textControl i {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.textSelection {
+  position: relative;
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  align-items: center;
+  margin-top: 16px;
+  padding: 6px 12px;
+  border: 2px solid #35a9d2;
+}
+
+.featureText {
+  width: 100%;
+  margin: 0;
+  color: #f4f4f4;
+  font-family: "Inter", "Inter Placeholder", sans-serif;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 1.05;
+}
+
+.handle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 1px solid #35a9d2;
+  border-radius: 50%;
+  background: #fff;
+  transform: translate(-50%, -50%);
+}
+
+.handle:nth-of-type(1) {
+  top: 0;
+  left: 0;
+}
+
+.handle:nth-of-type(2) {
+  top: 0;
+  left: 50%;
+}
+
+.handle:nth-of-type(3) {
+  top: 0;
+  left: 100%;
+}
+
+.handle:nth-of-type(4) {
+  top: 50%;
+  left: 0;
+}
+
+.handle:nth-of-type(5) {
+  top: 50%;
+  left: 100%;
+}
+
+.handle:nth-of-type(6) {
+  top: 100%;
+  left: 0;
+}
+
+.handle:nth-of-type(7) {
+  top: 100%;
+  left: 50%;
+}
+
+.handle:nth-of-type(8) {
+  top: 100%;
+  left: 100%;
+}
+
+@media (max-width: 1199.98px) {
+  .heading {
+    font-size: 40px;
+    letter-spacing: -1px;
+  }
+}
+
+@media (max-width: 809.98px) {
+  .section {
+    padding: 8px 32px 56px;
+  }
+
+  .heading {
+    margin-bottom: 36px;
+  }
+
+  .grid {
+    gap: 28px;
+  }
+
+  .label {
+    font-size: 24px;
+    margin-bottom: 18px;
+  }
+
+  .toolbar {
+    min-height: 76px;
+    gap: 6px;
+    padding: 8px;
+  }
+
+  .toolbarActions {
+    gap: 10px;
+  }
+
+  .toolbarControls {
+    gap: 5px;
+  }
+
+  .fontControl,
+  .sizeControl,
+  .textControl {
+    height: 30px;
+  }
+
+  .sizeControl {
+    width: 44px;
+  }
+
+  .textControl {
+    min-width: 70px;
+    gap: 5px;
+    padding: 0 8px;
+    font-size: 10px;
+  }
+
+  .textControl i {
+    width: 16px;
+    height: 16px;
+  }
+
+  .fontControl {
+    padding: 0 9px;
+  }
+
+  .textSelection {
+    margin-top: 12px;
+    padding: 6px 8px;
+  }
+}
+
+@media (max-width: 599.98px) {
+  .section {
+    padding: 0 24px 48px;
+  }
+
+  .heading {
+    margin-bottom: 32px;
+    font-size: 30px;
+    letter-spacing: -0.5px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .card:hover > .artwork,
+  .card:hover > .textCanvas {
+    transform: translateY(-6px) scale(1.025);
+  }
+
+  .label {
+    margin-bottom: 14px;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .artwork,
+  .textCanvas {
+    transition: none;
+  }
+
+  .card:hover > .artwork,
+  .card:hover > .textCanvas {
+    transform: none;
+  }
+
+  .labelGradient {
+    transition: none;
+  }
+
+  .labelText {
+    transition: none;
+  }
+}

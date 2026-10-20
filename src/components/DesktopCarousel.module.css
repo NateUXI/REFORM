@@ -1,0 +1,70 @@
+.carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+  /* Let the page scroll vertically while we handle horizontal swipes. */
+  touch-action: pan-y;
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2.6;
+  overflow: hidden;
+  /* Makes `cqw` below mean "1% of the stage width". */
+  container-type: inline-size;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 2%,
+    black 98%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%);
+}
+
+/*
+ * Each slide is 72% of the stage wide and sits 75.5% (72% + a 3.5% gap) from
+ * its neighbour. `--offset` is -1, 0 or +1: how far the slide is from centre.
+ */
+.slide {
+  position: absolute;
+  top: 50%;
+  left: 14cqw; /* (100% - 72%) / 2 */
+  width: 72cqw;
+  aspect-ratio: 1875 / 928;
+  border-radius: 24px;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  translate: calc(var(--offset, 0) * 75.5cqw) -50%;
+  scale: 0.92;
+  filter: blur(3px) brightness(0.45);
+  transition:
+    translate 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    scale 0.8s ease,
+    filter 0.8s ease;
+}
+
+.active {
+  scale: 1;
+  filter: blur(0) brightness(1);
+  cursor: default;
+}
+
+.slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide {
+    transition: none;
+  }
+}
