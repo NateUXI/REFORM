@@ -1,4 +1,4 @@
-import LegalModals from "./LegalModals";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -36,7 +36,10 @@ export default function Footer() {
           </p>
         </div>
       </div>
-      <LegalModals />
+      <nav className="legal-links" aria-label="Legal information">
+        <Link href="/terms-and-conditions">Terms and Conditions</Link>
+        <Link href="/privacy-policy">Privacy Policy</Link>
+      </nav>
     </div>
   );
 }

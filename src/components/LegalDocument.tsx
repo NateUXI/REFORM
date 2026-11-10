@@ -1,7 +1,4 @@
-"use client";
-
-import { createPortal } from "react-dom";
-import { useEffect, useId, useRef, useState } from "react";
+import Link from "next/link";
 
 const PRIVACY_POLICY = `This privacy policy applies to the REFORM app for mobile devices, Windows devices, and web browsers, together with any related services operated by Nate Turner (collectively, the "Application"). Nate Turner is hereby referred to as the "Service Provider".
 
@@ -289,99 +286,23 @@ function DocumentContent({ content }: { content: string }) {
   );
 }
 
-export default function LegalModals() {
-  const [activeDocument, setActiveDocument] = useState<keyof typeof DOCUMENTS | null>(null);
-  const closeButtonRef = useRef<HTMLButtonElement>(null);
-  const dialogRef = useRef<HTMLDivElement>(null);
-  const titleId = useId();
-
-  useEffect(() => {
-    if (!activeDocument) return;
-
-    const previousFocus = document.activeElement;
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    closeButtonRef.current?.focus();
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setActiveDocument(null);
-        return;
-      }
-      if (event.key !== "Tab") return;
-
-      const focusable = dialogRef.current?.querySelectorAll<HTMLElement>(
-        'button, a[href], [tabindex]:not([tabindex="-1"])',
-      );
-      if (!focusable?.length) return;
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
-      }
-    };
-
-    document.addEventListener("keydown", onKeyDown);
-    return () => {
-      document.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = previousOverflow;
-      if (previousFocus instanceof HTMLElement) previousFocus.focus();
-    };
-  }, [activeDocument]);
-
-  const active = activeDocument ? DOCUMENTS[activeDocument] : null;
-
+export function LegalDocumentPage({
+  documentType,
+}: {
+  documentType: keyof typeof DOCUMENTS;
+}) {
+  const document = DOCUMENTS[documentType];
   return (
-    <>
-      <nav className="legal-links" aria-label="Legal information">
-        <button type="button" onClick={() => setActiveDocument("terms")}>
-          Terms and Conditions
-        </button>
-        <button type="button" onClick={() => setActiveDocument("privacy")}>
-          Privacy Policy
-        </button>
-      </nav>
-      {active &&
-        createPortal(
-          <div
-            className="legal-overlay"
-            onMouseDown={(event) => {
-              if (event.target === event.currentTarget) setActiveDocument(null);
-            }}
-          >
-            <div
-              ref={dialogRef}
-              className="legal-modal"
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby={titleId}
-              tabIndex={-1}
-            >
-              <header className="legal-modal-header">
-                <h2 id={titleId}>{active.title}</h2>
-                <button
-                  ref={closeButtonRef}
-                  className="legal-modal-close"
-                  type="button"
-                  aria-label="Close legal information"
-                  onClick={() => setActiveDocument(null)}
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="m6 6 12 12M18 6 6 18" />
-                  </svg>
-                </button>
-              </header>
-              <div className="legal-modal-content">
-                <DocumentContent content={active.content} />
-              </div>
-            </div>
-          </div>,
-          document.body,
-        )}
-    </>
+    <main className="legal-page">
+      <Link className="legal-back-link" href="/">
+        Back to home
+      </Link>
+      <article>
+        <header className="legal-page-header">
+          <h1>{document.title}</h1>
+        </header>
+        <DocumentContent content={document.content} />
+      </article>
+    </main>
   );
 }
