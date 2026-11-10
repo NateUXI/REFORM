@@ -66,14 +66,15 @@ export default function Hero() {
           <div className="framer-1vb8opo">
             <CtaButton
               variant="primary"
-              href="/get-reform"
+              href="/Reform.exe"
+              download="Reform.exe"
               containerClassName="framer-1o752sx-container"
             >
               GET REFORM
             </CtaButton>
             <CtaButton
               variant="secondary"
-              href="/get-reform"
+              href="/app"
               containerClassName="framer-qachv6-container"
             >
               OPEN IN BROWSER

@@ -15,6 +15,7 @@ const VARIANTS = {
 
 type Props = {
   href: string;
+  download?: string;
   variant: keyof typeof VARIANTS;
   /**
    * Each placement of a button has its own absolutely-positioned wrapper class
@@ -25,12 +26,19 @@ type Props = {
 };
 
 /** The pill-shaped call-to-action button used in the hero and closing sections. */
-export default function CtaButton({ href, variant, containerClassName, children }: Props) {
+export default function CtaButton({
+  href,
+  download,
+  variant,
+  containerClassName,
+  children,
+}: Props) {
   const v = VARIANTS[variant];
   return (
     <div className={containerClassName}>
       <Link
         href={href}
+        download={download}
         className={`framer-a8RGM framer-s2pzxa ${v.className} framer-c05he8`}
         style={{ background: v.background, borderRadius: 100 }}
       >

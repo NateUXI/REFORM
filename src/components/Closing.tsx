@@ -16,14 +16,15 @@ export default function Closing() {
       <div className="framer-1o9psxe" data-scroll-reveal data-scroll-reveal-delay="1">
         <CtaButton
           variant="primary"
-          href="/get-reform"
+          href="/Reform.exe"
+          download="Reform.exe"
           containerClassName="framer-1tfq5i-container"
         >
           GET REFORM
         </CtaButton>
         <CtaButton
           variant="secondary"
-          href="/get-reform"
+          href="/app"
           containerClassName="framer-1dg6dt3-container"
         >
           OPEN IN BROWSER

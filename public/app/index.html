@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <base href="/app/" />
+    <title>REFORM</title>
+    <meta name="theme-color" content="#030506" />
+    <script>
+      // Apply the saved theme before first paint so there's no flash of the wrong one.
+      try {
+        var s = JSON.parse(localStorage.getItem('reform:settings') || '{}').state.settings;
+        if (s.theme) document.documentElement.dataset.theme = s.theme;
+        if (s.accent && s.accent !== 'theme' && s.accent !== 'reform') document.documentElement.dataset.accent = s.accent;
+        if (s.uiScale && s.uiScale !== 'default') document.documentElement.dataset.uiScale = s.uiScale;
+        if (s.reduceMotion) document.documentElement.dataset.reduceMotion = 'true';
+      } catch (e) {}
+    </script>
+    <link rel="icon" type="image/x-icon" href="./Reform.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Fredoka+One&family=Jersey+25&family=Inter:wght@400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" crossorigin src="./assets/index-DvEih6cP.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-Br0NPkDP.css">
+  </head>
+  <body class="bg-reform-bg text-reform-text antialiased">
+    <div id="root"></div>
+  </body>
+</html>

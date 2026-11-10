@@ -191,7 +191,7 @@ export default function Navigation() {
                   </p>
                 </Link>
               ))}
-              <Link className="framer-1hk7gx8" href="/get-reform" onClick={close}>
+              <a className="framer-1hk7gx8" href="/Reform.exe" download="Reform.exe" onClick={close}>
                 <p
                   className="framer-text"
                   dir="auto"
@@ -203,7 +203,7 @@ export default function Navigation() {
                 >
                   GET REFORM
                 </p>
-              </Link>
+              </a>
             </div>
           </>,
           document.body,
