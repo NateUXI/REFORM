@@ -5,7 +5,10 @@ const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
   async rewrites() {
-    return [{ source: "/app", destination: "/app/index.html" }];
+    return [
+      { source: "/app", destination: "/app/index.html" },
+      { source: "/app/auth/callback", destination: "/app/index.html" },
+    ];
   },
 };
 
