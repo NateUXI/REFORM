@@ -3,9 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <base href="/app/" />
     <title>REFORM</title>
     <meta name="theme-color" content="#030506" />
+    <script>
+      // Built assets are relative for Electron; web deep links need the app's base directory.
+      if (location.protocol !== 'file:') {
+        var base = document.createElement('base');
+        base.href = location.pathname === '/app' || location.pathname.indexOf('/app/') === 0 ? '/app/' : '/';
+        document.head.appendChild(base);
+      }
+    </script>
     <script>
       // Apply the saved theme before first paint so there's no flash of the wrong one.
       try {
@@ -23,8 +30,8 @@
       href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Fredoka+One&family=Jersey+25&family=Inter:wght@400;500;600;700;900&display=swap"
       rel="stylesheet"
     />
-    <script type="module" crossorigin src="./assets/index-CYqpA-7H.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-Br0NPkDP.css">
+    <script type="module" crossorigin src="./assets/index-Cgl31fSj.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-D3LZs-RS.css">
   </head>
   <body class="bg-reform-bg text-reform-text antialiased">
     <div id="root"></div>
