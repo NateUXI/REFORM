@@ -13,7 +13,11 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
-  icons: { icon: "/images/REFORM_LOGO.svg" },
+  icons: {
+    icon: "/images/REFORM_LOGO.svg",
+    apple: { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+  },
+  appleWebApp: { capable: true, title: "Reform" },
   openGraph: { type: "website", title, description },
   twitter: { card: "summary_large_image", title, description },
   robots: { index: true, follow: true, "max-image-preview": "large" },
